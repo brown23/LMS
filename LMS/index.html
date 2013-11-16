@@ -1,0 +1,184 @@
+<?php
+// INDEX.HTML - The main page displayed to the user. All other files get included into this page
+//   to add functionality according to the logged in user's access level (0 = User, 1 = Admin)
+
+    // Start a session to store user data
+    session_start();
+
+    require_once "includes/functions.php";
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <!-- TITLE AND METAS -->
+        <title>Library Management System</title>
+        <meta name="keywords" content="book, books, library, database, reserve, hold">
+        <meta name="description" content="Web application for searching books and placing holds for future pickup.">
+
+        <!-- EXTERNAL STYLESHEETS -->
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/magnific.css">
+        <link rel="stylesheet" type="text/css" href="css/gallery.css">
+
+        <!-- JAVASCRIPT INCLUDES -->
+        <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-personalized-1.5.2.packed.js"></script>
+        <script type="text/javascript" src="js/jquery-magnific-popup.js"></script>
+        <script type="text/javascript" src="js/component_init.js"></script>
+        <script type="text/javascript" src="js/form_validation.js"></script>
+        <script type="text/javascript" src="js/search.js"></script>
+        <script type="text/javascript" src="validation/jquery.validate.min.js"></script>
+        <noscript>
+            <p>JavaScript has been disabled in your browser. Please enable JavaScript in order to enjoy all the features of this site.</p>
+        </noscript>
+    </head>
+
+    <body>
+        <div id="menu-wrapper">
+            <!-- SITE HEADER -->
+            <?php
+                require "site_header.php";
+            ?>
+
+            <!-- MENU BAR -->
+            <div id="top-menu" class="widget">
+                <ul class="tabnav">
+                    <li><a href="#c-tabs1">Home</a></li>
+                    <li><a href="#c-tabs2">Events</a></li>
+                    <li><a href="#c-tabs3">Search Books</a></li>
+                    <li><a href="#c-tabs4">My Account</a></li>
+                </ul>
+            </div>
+
+            <!-- DISPLAY ANY SESSION MESSAGES -->
+            <!-- MESSAGES ARE DISPLAYED USING A MODULAR POPUP WINDOW -->
+            <div id="session-message">
+                <?php
+                    // If there is a message to display
+                    if ($_SESSION['message'] != '')
+                    {
+                        $message = $_SESSION['message'];
+                ?>
+                        <script>
+                            $(function () {
+                                $('.popup-modal').magnificPopup('open');
+                            });
+                        </script>
+                        <p style="visibility:hidden;font-size:0;"><a class="popup-modal" href="#message-box">Message</a></p>
+                        <div id="message-box" class="white-popup-block mfp-hide">
+                            <h1 class="center">Message</h1>
+                            <?php echo('<h2 class="center">' . $message . '</h2>'); ?>
+                            <p><a class="popup-modal-dismiss" href="#">Dismiss</a></p>
+                        </div>
+                <?php
+                        // Clear the message (this way it doesn't show again when page is refreshed)
+                        $_SESSION['message'] = '';
+                    }
+                ?>
+            </div>
+        </div>
+
+        <!-- CONTENT TABS -->
+        <!-- THESE TABS ORGANIZE EACH SECTION OF THE SITE AND ARE DISPLAYED ONE AT A TIME -->
+
+        <!-- HOME -->
+        <div id="c-tabs1" class="tabdiv">
+            <h2>Welcome to the Library Management System</h2>
+        </div>
+
+        <!-- EVENTS -->
+        <div id="c-tabs2" class="tabdiv">
+            <h2>View Current Events</h2>
+        </div>
+
+        <!-- SEARCH BOOKS -->
+        <div id="c-tabs3" class="tabdiv">
+            <?php
+            if($_SESSION['status'] == 1)
+            {
+                require "books.php";
+            }
+            else
+            {
+                require "login_form.php";
+            }
+            ?>
+        </div>
+
+        <!-- MY ACCOUNT -->
+        <div id="c-tabs4" class="tabdiv">
+            <?php
+            // If user is logged in, display account info
+            if($_SESSION['status'] == 1)
+            {
+                require "account_info.php";
+            }
+            // If not logged in display the login form
+            else
+            {
+                require "login_form.php";
+            }
+            ?>
+        </div>
+
+        <!-- DISPLAY FOOTER -->
+        <div id="footer">
+            <h3 style="text-align: right;color: #FFFFFF;"><a href="/" style="color: #17C1DB;">Library Management System</a> Copyright 2013</h3>
+        </div>
+
+        <!-- HTML FOR THE FORMS -->
+        <!-- THESE ARE HIDDEN USING CSS AND ARE ONLY ACCESSED WHEN CLICKING ON CORRESPONDING LINK -->
+        <div class="login-form">
+            <form id="login-form" class="white-popup-block mfp-hide" action="login.php" method="POST">
+                <h2>Library Management System Login</h2>
+                <fieldset>
+                    <p><label for="log_username">Username</label>
+                        <input id="log_username" name="log_username" placeholder="username" required="" type="text"></p>
+                    <p><label for="log_password">Password</label>
+                        <input id="log_password" name="log_password" placeholder="password" required="" type="password"></p>
+                    <input name="login" type="submit" value="login" />
+                </fieldset>
+            </form>
+        </div>
+        <div class="register-form">
+            <form id="register-form" class="white-popup-block mfp-hide" action="register.php" method="POST">
+                <h2>Library Management System Registration</h2>
+                <fieldset>
+                    <p><label for="reg_email">E-mail</label>
+                        <input id="reg_email" name="reg_email" placeholder="your-email@example.com" required="" type="text"></p>
+                    <p><label for="reg_username">Username</label>
+                        <input id="reg_username" name="reg_username" placeholder="choose a username" required="" type="text"></p>
+                    <p><label for="reg_password">Password</label>
+                        <input id="reg_password" name="reg_password" placeholder="choose a password" required="" type="password"></p>
+                    <p><label for="reg_repassword">Re-enter Password</label>
+                        <input id="reg_repassword" name="reg_repassword" placeholder="enter password again" required="" type="password"></p>
+                    <input name="register" type="submit" value="register" />
+                </fieldset>
+            </form>
+        </div>
+        <div class="forgot-form">
+            <form id="forgot-form" class="white-popup-block mfp-hide" action="forgot_request.php" method="POST">
+                <h2>Forgot Username or Password?</h2>
+                <h4>Use this form if you are already registered but have forgotten your username or password. You will be issued a temporary login password via e-mail that you can use to login.</h4>
+                <fieldset>
+                    <p><label for="for_email">Your E-mail</label>
+                        <input id="for_email" name="for_email" placeholder="your-email@example.com" required="" type="text"></p>
+                    <input name="forgot" type="submit" value="forgot" />
+                </fieldset>
+            </form>
+        </div>
+        <div class="pchange-form">
+            <form id="pchange-form" class="white-popup-block mfp-hide" action="pchange.php" method="POST">
+                <h2>Password Change</h2>
+                <fieldset>
+                    <p><label for="pch_password">Password</label>
+                        <input id="pch_password" name="pch_password" placeholder="choose a password" required="" type="password"></p>
+                    <p><label for="pch_repassword">Re-enter Password</label>
+                        <input id="pch_repassword" name="pch_repassword" placeholder="enter password again" required="" type="password"></p>
+                    <input name="update" type="submit" value="update" />
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,274 @@
+/***********
+Main Styling
+***********/
+
+body {
+    background-color:#FFFFFF;
+    background-image:url("../images/bg.jpg");
+    background-repeat:repeat;
+    background-position:top left;
+    background-attachment:fixed;
+    font-family:Arial, Helvetica, sans-serif;
+}
+p {
+    font-family: Verdana, Arial, sans-serif;
+    line-height: 1em;
+    color: #000000;
+    text-align:left;
+    font-size:10px;
+    font-style:normal;
+    font-weight:normal;
+    letter-spacing:1px;
+    text-indent:1S0px;
+}
+h1 {
+    letter-spacing:3px;
+    color:#000000;
+    font-family: 'PT Sans', Verdana, Arial, sans-serif;
+    font-weight: bold;
+    line-height: 1.6em;
+    text-decoration: none;
+    font-size: 20px;
+}
+h2 {
+    font-family: 'PT Sans', Verdana, Arial, sans-serif;
+    line-height: 1.6em;
+    color: #000000;
+    text-decoration: none;
+    font-size: 16px
+}
+h3 {
+    font-family: 'PT Sans', Verdana, Arial, sans-serif;
+    line-height: 1.6em;
+    color: #000000;
+    text-decoration: none;
+    font-size: 14px;
+}
+h4 {
+    font-family: 'PT Sans', Verdana, Arial, sans-serif;
+    line-height: 1.6em;
+    color: #000000;
+    text-decoration: none;
+    font-size: 12px;
+}
+h5 {
+    font-family: 'PT Sans', Verdana, Arial, sans-serif;
+    line-height: 1.6em;
+    color: #474747;
+    text-decoration: none;
+    font-size: 10px;
+}
+h6 {
+    font-family: 'PT Sans', Verdana, Arial, sans-serif;
+    line-height: 1.6em;
+    color: #474747;
+    text-decoration: none;
+    font-size: 8px;
+}
+.center{
+    text-align: center;
+}
+div#menu-wrapper {
+    background-color: #F0F0F0;
+    padding: 10px 75px 10px 75px;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+}
+div#logo-header {
+    display: block;
+}
+img#logo-large {
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    border-style:solid;
+}
+div#footer {
+    background-color: #333333;
+    padding: 20px;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+}
+.widget {
+    padding-top: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+    margin-top:0;
+    box-sizing: border-box;
+}
+.tabnav li {
+    display: inline-block;
+    list-style: none;
+    font-size: 17px;
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 10px;
+}
+.tabnav li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    background: #1A1717;
+    color: #FFFFFF;
+    font-weight: 300;
+    padding: 10px;
+    outline: none;
+    font-size: 17px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+}
+.tabnav li a:hover,.tabnav li a:active {
+    background: #17C1DB;
+    color: #222222;
+    text-decoration: none;
+}
+.tabnav li.ui-tabs-selected a {
+    background: #17C1DB;
+    color:#222222;
+}
+.tabdiv {
+    min-height:500px;
+    border-style: none;
+    border-color: #222222;
+    background: #FFFFFF;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 75px 10px 75px;
+    width: auto;
+    height: auto;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+.tabdiv li {
+    list-style: none;
+    margin-left: 20px;
+}
+.ui-tabs-hide {
+    display: none;
+}
+table th
+{
+    padding:5px;
+    margin:0;
+    border-width: 1px;
+    border-color: #777777;
+    border-collapse:collapse;
+    border-style: solid;
+    font-weight: bold;
+    background-color: #FFFFFF;
+}
+table td, tr
+{
+    padding:5px;
+    margin:0;
+    border-width: 1px;
+    border-color: #777777;
+    border-collapse: collapse;
+    border-style: solid;
+    background-color: #FFFFFF;
+    word-wrap: break-word;
+}
+fieldset {
+    border:0;
+    padding:1em;
+}
+label {
+    float:left;
+    width:25%;
+    margin-right:0.5em;
+    padding-top:0.2em;
+    text-align:right;
+    font-weight:bold;
+}
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/*******************
+CSS For Price Search
+*******************/
+div#header {
+    width: 100%;
+    background-color:#FFFFFF;
+}
+div#main {
+    width: 450px;
+    margin: 20px auto 20px auto;
+}
+div#full-results {
+    width: 70%;
+    margin: 10px auto 10px auto;
+}
+input#search {
+    width: 440px;
+    height: 25px;
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    outline: none;
+    border: 1px solid #757575;
+    font-size: 20px;
+    line-height: 25px;
+    color: #757575;
+}
+input#search:hover, input#search:focus {
+    color: #3b3b3b;
+    border: 1px solid #36a2d2;
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+}
+h4#results {
+    display: none;
+}
+ul#results {
+    display: none;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4px;
+    border: 1px solid #ababab;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: rgba(0, 0, 0, .15) 0 1px 3px;
+    -moz-box-shadow: rgba(0,0,0,.15) 0 1px 3px;
+    box-shadow: rgba(0, 0, 0, .15) 0 1px 3px;
+}
+ul#results li {
+    padding: 8px;
+    cursor: pointer;
+    border-top: 1px solid #cdcdcd;
+    transition: background-color .3s ease-in-out;
+    -moz-transition: background-color .3s ease-in-out;
+    -webkit-transition: background-color .3s ease-in-out;
+}
+ul#results li:hover {
+    background-color: #F7F7F7;
+}
+ul#results li:first-child {
+    border-top: none;
+}
+ul#results li h3, ul#results li h4 {
+    transition: color .3s ease-in-out;
+    -moz-transition: color .3s ease-in-out;
+    -webkit-transition: color .3s ease-in-out;
+    color: #616161;
+    line-height: 1.2em;
+}
+ul#results li:hover h3, ul#results li:hover h4  {
+    color: #3b3b3b;
+    font-weight: bold;
+}
