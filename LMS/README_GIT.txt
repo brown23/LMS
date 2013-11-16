@@ -6,12 +6,10 @@ Set up GitHub Account
 2. setup username and password.
 3. email brown23.jason@yahoo.com your username.  He is the owner and will 
 	set up your account as Collaborator.  This will give you the ability to commit.
-4. 
 -----------------------------------------
 -----------------------------------------
 Install Software Update to Eclipse for Git
 -----------------------------------------
-
 1. Upgrade Eclipse to the latest.
 2. In Eclipse Follow the Menu Help => Install New Software...
 	In the Work with:  Copy and paste the following.
@@ -26,7 +24,7 @@ Install Software Update to Eclipse for Git
 	Repository path: brown23/LMS.git
 	
 	Authentication
-	user:  yourusername@youraddress.com
+	user:  yourusername
 	Password: obviouslyYourPassword
 	
 6. Branch Selection verify master is selected and click next. 
@@ -46,4 +44,7 @@ How to commit changes
 2. Team => Share Project  => Next
 3. Select the repository.  Should be c:\.....\workpace\LMS.git
 4. Select finish
-5. 
+5. Right Click on the project (LMS)
+6. Team => Commit
+7. Input a comment with a description on the changes you made.
+8. Select commit.
