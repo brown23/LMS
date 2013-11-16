@@ -31,7 +31,8 @@ an actual web browser and not the eclipse browser.
 Check for a simple project
 -----------------------------------------
 This is where you would import the Git Version our project.  I'm leaving this piece of the tutorial so you can see a simplified set
-up.  This might be helpful.
+up.  This might be helpful.  Skip to ahead to setup the dbase or pull from the repository.  Both have to be done but it doesn't matter the order
+I recommend setting up the database.
 
 1.	Open Eclipse
 2.	Windows =>Open Perspectives => others =>PHP
@@ -68,7 +69,10 @@ Set up myPhpAdmin and create MySql Database
 15. copy and paste text from "README_DB_SETUP.txt" into query box.
 16. select "Go"
 
-At this point you should have 3 tables.  Run the testscript_dbase_connect.php to make sure you can connect to the database.
+At this point you should have 3 tables. 
+Pull the project from the LMS repository if you haven't done so already!
+
+Run the testscript_dbase_connect.php to make sure you can connect to the database.
 
 
 

@@ -28,14 +28,25 @@ Install Software Update to Eclipse for Git
 	Password: obviouslyYourPassword
 	
 6. Branch Selection verify master is selected and click next. 
-7. Local Destination click Finish
+7. Directory should be where ever your Xampp/htdocs is located.
+   For xampp to run your webpages correctly this is the most important piece
+   your pages need to be in this folder.  You can run any other IDE if your project is
+   this folder. Click next
 8. Window => Show perspective => PHP (I am assuming you've set up according to README_PHPeclipse.txt and PHPeclipse is already installed)
 9.	File => New => PHP Project 
-10  Create a PHP Project 
-	Project name:  LMS  (This must be the exact name of the project from the repository.  I had issues with this during my install)
-	Click next then finish.  
+10.  Create a PHP Project 
+	Project name:  This can be any project name, it does not need to be the same as the 
+	github project name.  
+11. Make sure default location in NOT checked and select the folder inside your Xamp/htdocs location.  It should be named LMS.
+	
 
-You now have the source code and should run it to make sure its working.
+At this point you should have the project correctly installed on your local host.  To test follow the README_PHPeclipse.txt instructions.
+When you have XAMPP installed you can type
+
+localhost/LMS/LMS/index.html  to see the website 
+or
+localhost/LMS/LMS/testscript_dbase_connect.php to ensure you are connected to the database.
+
 -----------------------------------------
 -----------------------------------------
 How to commit changes
