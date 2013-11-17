@@ -15,10 +15,10 @@ session_start();
 ************************************************/
 
 // Credentials
-    $db_host = 'localhost';
-    $db_name = 'library_management_system';
-    $db_user = 'root';
-    $db_pass = 'test123';
+$db_host = 'localhost';
+$db_name = 'library_management_system';
+$db_user = 'root';
+$db_pass = 'test123';
 
 //	Connection
 global $db_connect;
@@ -55,21 +55,20 @@ else
 
 // Define Output HTML Formatting
 $html = '<tr class="result">';
-$html .= '<td><h4>modelString</h4></td>';
-$html .= '<td><h4>full_nameString</h4></td>';
-$html .= '<td><h4>ratioString</h4></td>';
-$html .= '<td><h4>seriesString</h4></td>';
-$html .= '<td><h4>diagString</h4></td>';
-$html .= '<td><h4>matString</h4></td>';
+$html .= '<td><h4>titleString</h4></td>';
+$html .= '<td><h4>authorString</h4></td>';
+$html .= '<td><h4>publicationString</h4></td>';
+$html .= '<td><h4>isbnString</h4></td>';
+$html .= '<td><h4>availableString</h4></td>';
 if ($access == ADMIN)
-    $html .= '<td><h4>msrpString</h4></td>';
+    $html .= '<td><h4>editString</h4></td>';
 $html .= '</tr>';
 
 $token_count = 0;
 
 // Get Search
 $search_string = preg_replace("/[^A-Za-z0-9:]/", " ", $_POST['query']);
-$search_string = $sev_db_connect->real_escape_string($search_string);
+$search_string = $db_connect->real_escape_string($search_string);
 str_replace(':', '', $search_string);
 
 // Use Space as Tokenizing Character
@@ -79,17 +78,17 @@ $token_array = array();
 
 // Tokenize Search String
 while ($token !== false && $token_count < 7) {
-    if(!discardToken($token))
-    {
+    //if(!discardToken($token))
+    //{
         $token_array[$token_count] = $token;
         $token = strtok(" ");
         $token_count++;
-    }
-    else
+    //}
+    /*else
     {
         $token_array[$token_count] = "INVALID TOKEN";
         $token = strtok(" ");
-    }
+    }*/
 }
 
 // Fixes query bug where first search token is an invalid token
@@ -100,21 +99,19 @@ if(sizeof($token_array) == 1)
 if (strlen($search_string) >= 1 && $search_string !== ' ') {
 	// Build Query
 	$key = 0;
-	$query = 'SELECT * FROM prices WHERE ';
+	$query = 'SELECT * FROM team8_book_info WHERE ';
 	while ($key < $token_count) {
-		$query .= '(UPPER(model) LIKE "%'.strtoupper($token_array[$key]).'%" OR ';
-		$query .= 'UPPER(full_name) LIKE "%'.strtoupper($token_array[$key]).'%" OR ';
-		$query .= 'UPPER(series) LIKE "%'.strtoupper($token_array[$key]).'%" OR ';
-		$query .= 'ratio LIKE "%'.$token_array[$key].'%" OR ';
-		$query .= 'diagonal LIKE "%'.$token_array[$key].'%" OR ';
-		$query .= 'UPPER(material) LIKE "%'.strtoupper($token_array[$key]).'%")';
+		$query .= '(UPPER(title) LIKE "%'.strtoupper($token_array[$key]).'%" OR ';
+		$query .= 'UPPER(author) LIKE "%'.strtoupper($token_array[$key]).'%" OR ';
+		$query .= 'UPPER(publication) LIKE "%'.strtoupper($token_array[$key]).'%" OR ';
+		$query .= 'isbn LIKE "%'.$token_array[$key].'%")';
 		$key++;
 		if ($key != $token_count)
 			$query .= ' AND ';
 	}
 
 	// Do Search
-	$result = $sev_db_connect->query($query);
+	$result = $db_connect->query($query);
 	while($results = $result->fetch_array()) {
 		$result_array[] = $results;
 	}
@@ -122,9 +119,9 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 	// Check If We Have Results
 	if (isset($result_array)) {
         // Display table header based on level of access
-        echo('<tr class="result"><td><h3>Model</h3></td><td><h3>Description</h3></td><td><h3>Ratio</h3></td><td><h3>Series</h3></td><td><h3>Diagonal</h3></td><td><h3>Material</h3></td>');
+        echo('<tr class="result"><th><h3>Title</h3></th><th><h3>Author</h3></th><th><h3>Publication</h3></th><th><h3>ISBN</h3></th><th><h3>Available</h3></th><th><h3>Preview</h3></th>');
         if ($access == ADMIN)
-            echo('<td><h3>MSRP</h3></td>');
+            echo('<th><h3>Edit</h3></th>');
         echo('</tr>');
 		foreach ($result_array as $result) {
 
@@ -133,38 +130,34 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 
             while($key < $token_count)
             {
-                $display_model = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['model']);
-                $display_full_name = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['full_name']);
-                $display_ratio = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['ratio']);
-                $display_series = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['series']);
-                $display_diag = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['diagonal']);
-                $display_mat = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['material']);
+                $display_title = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['model']);
+                $display_author = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['full_name']);
+                $display_publication = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['ratio']);
+                $display_isbn = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['series']);
+                $display_available = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['diagonal']);
                 if ($access == ADMIN)
-                    $display_msrp = '$' . preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['msrp']);
+                    $display_edit = '$' . preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['msrp']);
                 $key++;
             }
 
-			// Insert Model
-			$output = str_replace('modelString', $display_model, $html);
+			// Insert Title
+			$output = str_replace('titleString', $display_title, $html);
 
-			// Insert Full Name
-            $output = str_replace('full_nameString', $display_full_name, $output);
+			// Insert Author
+            $output = str_replace('authorString', $display_author, $output);
 
-            // Insert Ratio
-            $output = str_replace('ratioString', $display_ratio, $output);
+            // Insert Publication
+            $output = str_replace('publicationString', $display_publication, $output);
 
-            // Insert Series
-            $output = str_replace('seriesString', $display_series, $output);
+            // Insert ISBN
+            $output = str_replace('isbnString', $display_isbn, $output);
 
-            // Insert Diagonal
-            $output = str_replace('diagString', $display_diag, $output);
+            // Insert Availability
+            $output = str_replace('availableString', $display_available, $output);
 
-            // Insert Material
-            $output = str_replace('matString', $display_mat, $output);
-
-            // Insert MSRP
+            // Insert Admin Link
             if ($access == ADMIN)
-                $output = str_replace('msrpString', $display_msrp, $output);
+                $output = str_replace('editString', $display_edit, $output);
 
 			// Output
 			echo($output);
@@ -173,17 +166,12 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
     else {
 
 		// Format No Results Output
-		$output = str_replace('urlString', 'javascript:void(0);', $html);
-		$output = str_replace('modelString', '<b>No Results Found.</b>', $output);
-		$output = str_replace('full_nameString', 'Try Again.', $output);
-        $output = str_replace('ratioString', '', $output);
-        $output = str_replace('seriesString', '', $output);
-        $output = str_replace('diagString', '', $output);
-        $output = str_replace('matString', '', $output);
-		$output = str_replace('msrpString', '', $output);
-        $output = str_replace('distString', '', $output);
-        $output = str_replace('prefString', '', $output);
-        $output = str_replace('dealString', '', $output);
+		$output = str_replace('titleString', '<b>No Results Found.</b>', $html);
+		$output = str_replace('authorString', 'Try Again.', $output);
+        $output = str_replace('publicationString', '', $output);
+        $output = str_replace('isbnString', '', $output);
+        $output = str_replace('availableString', '', $output);
+        $output = str_replace('editString', '', $output);
 
 		// Output
 		echo($output);
@@ -191,9 +179,9 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 }
 
 // Close connection
-$sev_db_connect->close();
+$db_connect->close();
 
-// If $tok not part of a valid search term, discard it
+/* If $tok not part of a valid search term, discard it
 function discardToken($tok)
 {
     $validWords = array("3DMP","ACOUSTICALLY","BROADWAY","BWAT","BWMP","CF","CGMP","CINEMA","CROSSFIRE", "CURVED","CWMP","DELUXE","DF","DOWN","ELECTRIC","FF","FIXED","FRAME","GE","GM","GP","GREY","GT","GVMP","GX","HVMP","IF","IMPRESSION","LEGACY","LF","MANUAL","MATTE","MICRO","MW", "PERF","PORTABLE","PULL","QUICK","SAT4K","SE","SEVISION","SPIRIT","ST","TAB","TENSIONED","TRAPDOOR","UP","VISION","WE","WHISPER","WHITE","WT", "XF");
@@ -208,5 +196,5 @@ function discardToken($tok)
         return false; // Do not discard token
     else
         return true;  // Discard token
-}
+}*/
 ?>
