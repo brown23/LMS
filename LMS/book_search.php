@@ -14,11 +14,8 @@ session_start();
 	MySQL Connect
 ************************************************/
 
-// Credentials
-$db_host = 'localhost';
-$db_name = 'library_management_system';
-$db_user = 'root';
-$db_pass = 'test123';
+// Database credentials
+require "includes/db_credentials.php";
 
 //	Connection
 global $db_connect;

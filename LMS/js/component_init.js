@@ -20,7 +20,7 @@ $(document).ready(function() {
     $('.popup-modal').magnificPopup({
         type: 'inline',
         preloader: false,
-        modal: true
+        modal: false
     });
     $(document).on('click', '.popup-modal-dismiss', function (e) {
         e.preventDefault();

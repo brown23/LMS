@@ -9,10 +9,8 @@
         <h1 class="center">Library Book Search</h1>
 
         <?php
-        $db_host = 'localhost';
-        $db_name = 'library_management_system';
-        $db_user = 'root';
-        $db_pass = 'test123';
+        // Database credentials
+        require "includes/db_credentials.php";
 
         mysql_connect($db_host,$db_user,$db_pass);
         $db_selected = @mysql_select_db($db_name);
