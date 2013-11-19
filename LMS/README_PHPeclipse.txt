@@ -26,6 +26,25 @@ an actual web browser and not the eclipse browser.
 1.	If an auto configure has not taken place, manually the components of XAMPP has to be configured in Eclipse.
 2.	Go to, Windows => Preferences => PHPeclipse =>PHP External Tools. 
 3.	Here Apache, MySQL and XAMPP will be seen. Their respective location has to be configured.
+4.  Edit the c:\xampp\apache\conf\extra\httpd-xampp CONF file.
+5.  Cut and paste the following line in between the <IfModule env_module></IfModule> tags.
+	
+	AddType application/x-httpd-php .html .htm 
+	
+	It should be something like the follwing.  Yours may be different depending on where you installed your xampp.
+	
+<IfModule env_module>
+    SetEnv MIBDIRS "C:/xampp/php/extras/mibs"
+    SetEnv MYSQL_HOME "\\xampp\\mysql\\bin"
+    SetEnv OPENSSL_CONF "C:/xampp/apache/bin/openssl.cnf"
+    SetEnv PHP_PEAR_SYSCONF_DIR "\\xampp\\php"
+    SetEnv PHPRC "\\xampp\\php"
+    SetEnv TMP "\\xampp\\tmp"
+    AddType application/x-httpd-php .html .htm
+</IfModule>
+
+	If you leave it as is. The php can be read only in .php files.  With the new line of code php will be read in .html and .htm files
+	
 -----------------------------------------
 -----------------------------------------
 Check for a simple project
