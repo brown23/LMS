@@ -4,6 +4,8 @@
     // Display Add a Book Form
     echo('<a class="popup-with-form" href="#add-book-form"><h4>Add A Book to the Catalog</h4></a>');
 ?>
+
+<!-- FORM FOR ADDING A BOOK-->
 <div class="add-book-form">
     <form id="add-book-form" class="white-popup-block mfp-hide" action="add_book.php" method="POST">
         <h2>Add A Book to the Catalog</h2>
@@ -20,8 +22,22 @@
             <p><label for="adb_isbn">ISBN-13</label>
                 <input id="adb_isbn" name="adb_isbn" placeholder="ISBN-13 (no dashes)" required="" type="text"></p>
             <p><label for="adb_available">Availablilty</label>
-                <input if = "adb_available" name="adb_available" type="checkbox" value="1">Available For Checking Out</p>
+                <input id="adb_available" name="adb_available" type="checkbox" value="1">Available For Checking Out</p>
             <input name="add" type="submit" value="add" />
+        </fieldset>
+    </form>
+</div>
+
+<!-- FORM FOR DELETING A BOOK-->
+<div class="del-book-form">
+    <form id="del-book-form" class="white-popup-block mfp-hide" action="del_book.php" method="POST">
+        <h2>Delete Book From Catalog</h2>
+        <h4>Enter the book ID to permanently remove a book from the catalog. This cannot be undone.</h4>
+        <h4>(Search the Library Catalog to find the Book ID if it is not known)</h4><br>
+        <fieldset>
+            <p><label for="del_id">Book ID</label>
+                <input id="del_id" name="del_id" placeholder="ID" required="" type="text"></p>
+            <input type="submit" id="delete" name="delete" value="delete" />
         </fieldset>
     </form>
 </div>

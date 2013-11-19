@@ -58,7 +58,7 @@ $html .= '<td><h4>publicationString</h4></td>';
 $html .= '<td><h4>isbnString</h4></td>';
 $html .= '<td><h4>availableString</h4></td>';
 if ($access == ADMIN)
-    $html .= '<td><h4>editString</h4></td>';
+    $html .= '<td>delString</td>';
 $html .= '</tr>';
 
 $token_count = 0;
@@ -110,7 +110,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
         // Display table header based on level of access
         echo('<tr class="result"><th><h3>Title</h3></th><th><h3>Author</h3></th><th><h3>Publication</h3></th><th><h3>ISBN</h3></th><th><h3>Available</h3></th>');
         if ($access == ADMIN)
-            echo('<th><h3>Remove Book</h3></th>');
+            echo('<th><h3>Book ID</h3></th>');
         echo('</tr>');
 		foreach ($result_array as $result) {
 
@@ -127,21 +127,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
                 if ($access == ADMIN)
                 {
                     // Get book ID
-                    $id = $result['id'];
-
-                    // Create a delete book form for each entry
-                    $display_edit = '<a class="popup-with-form" href="#del-book-form-' . $id . '">Remove</a>';
-                    $display_edit .= '<div class="del-book-form">';
-                    $display_edit .= '<form id="del-book-form-' . $id . '" class="white-popup-block mfp-hide" action="del_book.php" method="POST">';
-                    $display_edit .= '<h2>Delete Book From Catalog</h2>';
-                    $display_edit .= '<h4>You are about to permanently remove ' . $title . ' ISBN: ' . $isbn . ' from the catalog. This cannot be undone.</h4><br>';
-                    $display_edit .= '<fieldset>';
-                    $display_edit .= '<input type="hidden" id="book_id" name="book_id" value="' . $id . '">';
-                    $display_edit .= '<input type="submit" id="delete" name="delete" value="delete" />';
-                    $display_edit .= '<input type="submit" id="cancel" name="cancel" value="cancel" />';
-                    $display_edit .= '</fieldset>';
-                    $display_edit .= '</form>';
-                    $display_edit .= '</div>';
+                    $display_edit = $result['id'];
                 }
                 $key++;
             }
@@ -163,7 +149,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 
             // Insert Admin Delete Book Link
             if ($access == ADMIN)
-                $output = str_replace('editString', $display_edit, $output);
+                $output = str_replace('delString', $display_edit, $output);
 
 			// Output
 			echo($output);
@@ -177,7 +163,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
         $output = str_replace('publicationString', '', $output);
         $output = str_replace('isbnString', '', $output);
         $output = str_replace('availableString', '', $output);
-        $output = str_replace('editString', '', $output);
+        $output = str_replace('delString', '', $output);
 
 		// Output
 		echo($output);

@@ -20,6 +20,9 @@
         }
         else
         {
+            // Display delete book form if user is admin
+            if($_SESSION['rank'] == 1)
+                echo('<a class="popup-with-form" href="#del-book-form"><h3 class="center">Delete a Book By ID</h3></a>');
             echo('<!-- Main Input -->');
             echo('<div class="currentrank" style="text-align:right;"><b style="visibility:hidden;font-size:0;">' . rankToString($_SESSION['rank']) . '</b></div>');
             echo('<input type="text" id="search" autocomplete="off" placeholder="Type search here">');

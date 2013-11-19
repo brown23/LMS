@@ -96,4 +96,14 @@ $(document).ready(function () {
             }
         }
     });
+
+    // initialize the plugin for add-book-form
+    $('#del-book-form').validate( {
+        rules: {
+            del_id: {
+                required: true,
+                number: true
+            }
+        }
+    });
 });
