@@ -30,14 +30,18 @@ CREATE TABLE `team8_reg_users` (
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 CREATE TABLE `team8_book_info` (
- `title` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
- `author` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
- `publication` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
- `issue_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
- `returned_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
- `image_file_name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
- `availability` tinyint(1) unsigned NOT NULL,
- PRIMARY KEY (`title`)
- ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `author` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `publication` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `isbn` int(15) NOT NULL,
+  `issue_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `due_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `returned_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `image_file_name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `current_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `availability` tinyint(1) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
  
  
