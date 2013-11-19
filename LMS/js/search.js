@@ -11,7 +11,7 @@ $(document).ready(function() {
 		if(query_value !== ''){
 			$.ajax({
 				type: "POST",
-				url: "../book_search.php",
+				url: "http://severtsonscreens.com/cse360/LMS/book_search.php",
 				data: { query: query_value, rank: rank },
 				cache: false,
 				success: function(html){

@@ -52,7 +52,6 @@
     // Create team8_login_attempt entry
     mysql_query("INSERT INTO team8_reg_login_attempt(ip, username, login_success) VALUES ('$ip','$username', '$login_success')") or die("".mysql_error());
 
-
     // Close DB connection
     require "includes/user_db_close.php";
 

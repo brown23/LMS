@@ -6,7 +6,7 @@
 <div id="header">
     <div id="main">
         <!-- Main Title -->
-        <h1 class="center">Library Book Search</h1>
+        <h1 class="center">Library Catalog Search</h1>
 
         <?php
         // Database credentials

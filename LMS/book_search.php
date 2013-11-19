@@ -75,17 +75,9 @@ $token_array = array();
 
 // Tokenize Search String
 while ($token !== false && $token_count < 7) {
-    //if(!discardToken($token))
-    //{
         $token_array[$token_count] = $token;
         $token = strtok(" ");
         $token_count++;
-    //}
-    /*else
-    {
-        $token_array[$token_count] = "INVALID TOKEN";
-        $token = strtok(" ");
-    }*/
 }
 
 // Fixes query bug where first search token is an invalid token
@@ -116,9 +108,9 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 	// Check If We Have Results
 	if (isset($result_array)) {
         // Display table header based on level of access
-        echo('<tr class="result"><th><h3>Title</h3></th><th><h3>Author</h3></th><th><h3>Publication</h3></th><th><h3>ISBN</h3></th><th><h3>Available</h3></th><th><h3>Preview</h3></th>');
+        echo('<tr class="result"><th><h3>Title</h3></th><th><h3>Author</h3></th><th><h3>Publication</h3></th><th><h3>ISBN</h3></th><th><h3>Available</h3></th>');
         if ($access == ADMIN)
-            echo('<th><h3>Edit</h3></th>');
+            echo('<th><h3>Remove Book</h3></th>');
         echo('</tr>');
 		foreach ($result_array as $result) {
 
@@ -127,13 +119,30 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 
             while($key < $token_count)
             {
-                $display_title = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['model']);
-                $display_author = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['full_name']);
-                $display_publication = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['ratio']);
-                $display_isbn = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['series']);
-                $display_available = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['diagonal']);
+                $display_title = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['title']);
+                $display_author = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['author']);
+                $display_publication = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['publication']);
+                $display_isbn = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['isbn']);
+                $display_available = preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['availability']);
                 if ($access == ADMIN)
-                    $display_edit = '$' . preg_replace("/".$token_array[$key]."/i", "<b class='highlight'>".$token_array[$key]."</b>", $result['msrp']);
+                {
+                    // Get book ID
+                    $id = $result['id'];
+
+                    // Create a delete book form for each entry
+                    $display_edit = '<a class="popup-with-form" href="#del-book-form-' . $id . '">Remove</a>';
+                    $display_edit .= '<div class="del-book-form">';
+                    $display_edit .= '<form id="del-book-form-' . $id . '" class="white-popup-block mfp-hide" action="del_book.php" method="POST">';
+                    $display_edit .= '<h2>Delete Book From Catalog</h2>';
+                    $display_edit .= '<h4>You are about to permanently remove ' . $title . ' ISBN: ' . $isbn . ' from the catalog. This cannot be undone.</h4><br>';
+                    $display_edit .= '<fieldset>';
+                    $display_edit .= '<input type="hidden" id="book_id" name="book_id" value="' . $id . '">';
+                    $display_edit .= '<input type="submit" id="delete" name="delete" value="delete" />';
+                    $display_edit .= '<input type="submit" id="cancel" name="cancel" value="cancel" />';
+                    $display_edit .= '</fieldset>';
+                    $display_edit .= '</form>';
+                    $display_edit .= '</div>';
+                }
                 $key++;
             }
 
@@ -152,7 +161,7 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
             // Insert Availability
             $output = str_replace('availableString', $display_available, $output);
 
-            // Insert Admin Link
+            // Insert Admin Delete Book Link
             if ($access == ADMIN)
                 $output = str_replace('editString', $display_edit, $output);
 
@@ -177,21 +186,4 @@ if (strlen($search_string) >= 1 && $search_string !== ' ') {
 
 // Close connection
 $db_connect->close();
-
-/* If $tok not part of a valid search term, discard it
-function discardToken($tok)
-{
-    $validWords = array("3DMP","ACOUSTICALLY","BROADWAY","BWAT","BWMP","CF","CGMP","CINEMA","CROSSFIRE", "CURVED","CWMP","DELUXE","DF","DOWN","ELECTRIC","FF","FIXED","FRAME","GE","GM","GP","GREY","GT","GVMP","GX","HVMP","IF","IMPRESSION","LEGACY","LF","MANUAL","MATTE","MICRO","MW", "PERF","PORTABLE","PULL","QUICK","SAT4K","SE","SEVISION","SPIRIT","ST","TAB","TENSIONED","TRAPDOOR","UP","VISION","WE","WHISPER","WHITE","WT", "XF");
-    $pattern = "*" . strtoupper($tok) . "*";
-    $matches = 0;
-
-    for($i = 0; $i < sizeof($validWords); $i++)
-    {
-        $matches = $matches + preg_match($pattern, $validWords[$i]);
-    }
-    if ($matches > 0 || is_numeric($tok)) // If at least one match is found or if token is a number
-        return false; // Do not discard token
-    else
-        return true;  // Discard token
-}*/
 ?>

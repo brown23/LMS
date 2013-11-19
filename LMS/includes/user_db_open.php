@@ -5,7 +5,5 @@
 
     $link = mysql_connect($db_host,$db_user,$db_pass);
     @$link or die ("Could not connect to MySql");
-    @mysql_select_db($db_name) or die ("Could not connect to Dbase");
-    
-    echo "Connected to Dbase!";
+    @mysql_select_db($db_name) or die ("Could not connect to Database");
 ?>

@@ -70,4 +70,30 @@ $(document).ready(function () {
             }
         }
     });
+
+    // initialize the plugin for add-book-form
+    $('#add-book-form').validate( {
+        rules: {
+            adb_title: {
+                required: true,
+                maxlength: 125
+            },
+            adb_auth_first: {
+                required: true,
+                maxlength: 45
+            },
+            adb_auth_last: {
+                required: true,
+                maxlength: 45
+            },
+            adb_publisher: {
+                required: true,
+                maxlength: 50
+            },
+            adb_isbn: {
+                required: true,
+                maxlength: 13
+            }
+        }
+    });
 });

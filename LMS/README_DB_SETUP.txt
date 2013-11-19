@@ -11,7 +11,7 @@ CREATE TABLE `team8_reg_login_attempt` (
   `login_success` tinyint(1) NOT NULL,
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 CREATE TABLE `team8_reg_users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -27,7 +27,7 @@ CREATE TABLE `team8_reg_users` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `token` (`token`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 CREATE TABLE `team8_book_info` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -42,7 +42,7 @@ CREATE TABLE `team8_book_info` (
   `current_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `availability` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 #----------------------------------------------------------------------------------------
 # The following will create dummy bookInfo. To add to or take away from 
