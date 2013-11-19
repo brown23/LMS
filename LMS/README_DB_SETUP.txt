@@ -11,7 +11,7 @@ CREATE TABLE `team8_reg_login_attempt` (
   `login_success` tinyint(1) NOT NULL,
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=35 ;
 
 CREATE TABLE `team8_reg_users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,6 @@ CREATE TABLE `team8_reg_users` (
   `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `rank` tinyint(2) unsigned NOT NULL,
-  `account_balance` float NOT NULL DEFAULT '0',
   `registered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `token` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
@@ -28,7 +27,7 @@ CREATE TABLE `team8_reg_users` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `token` (`token`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 CREATE TABLE `team8_book_info` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -43,6 +42,20 @@ CREATE TABLE `team8_book_info` (
   `current_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `availability` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
- 
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+
+#----------------------------------------------------------------------------------------
+# The following will create dummy bookInfo. To add to or take away from 
+# the .txt file to your hearts desire.  Obviously needs to be in the format of team8_book_info 
+# or it will not import properly.  A Partial load of data is possible.  Reloading again might get
+# 'duplicate' error.
+#---------------------------------------------------------------------------------------- 
+
+LOAD DATA INFILE 'C:/xampp/htdocs/LMS/LMS/bookInfoData.txt'
+INTO TABLE library_management_system.team8_book_info
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n';
+
+
+
  

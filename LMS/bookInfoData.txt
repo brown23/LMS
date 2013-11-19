@@ -1,0 +1,2 @@
+000001	Food And Culture	Kittler Sucher Nelms	Wadsworth	9780538734974	2013-01-01 12:12:13	2014-11-01 12:12:13	0000-00-00 00:00:00	LMS\images\imagefile1.pdf	NULL	0
+000002	Art in the 80s	Pablo Picasso	MOMA	9790438764974	2013-12-10 10:11:11	2014-02-03 11:11:11	0000-00-00 00:00:00	LMS\images\imagefile2.pdf	NULL	1  
