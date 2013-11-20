@@ -34,7 +34,7 @@ CREATE TABLE `team8_book_info` (
   `title` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `author` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `publication` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `isbn` int(15) NOT NULL,
+  `isbn` varchar(15) NOT NULL,  # do not change this must be a char in order to have the correct format otherwise mySql cannot hold an int this high!
   `issue_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `due_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `returned_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
