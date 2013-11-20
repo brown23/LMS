@@ -1,5 +1,5 @@
-//If you change anything in the database make sure you update the CREATE TABLE below to reflect the change.  This is necessary
-// for a flawless integration with the actual site.
+# If you change anything in the database make sure you update the CREATE TABLE below to reflect the change.  This is necessary
+# for a flawless integration with the actual site.
 
 
 use `library_management_system`;
