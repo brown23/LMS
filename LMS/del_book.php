@@ -12,7 +12,7 @@ if(isset($_POST['delete']))
     // Open DB connection ($link)
     require "includes/user_db_open.php";
 
-    // Check username/password against database
+    // Check if book is in database
     $query = "SELECT * FROM team8_book_info WHERE id='" . $id . "';";
     $result = mysql_query($query);
     if(mysql_numrows($result) != 1) {

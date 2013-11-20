@@ -1,9 +1,15 @@
 <?php
     // ADMIN_TOOLS.PHP - Display admin login tools
 
-    // Display Add a Book Form
-    echo('<a class="popup-with-form" href="#add-book-form"><h4>Add A Book to the Catalog</h4></a>');
-    echo('<a class="popup-with-form" href="#pdf-form"><h4>Upload a Book Cover to the Catalog</h4></a>');
+    // Display Library Catalog Management Tools
+    echo('<div id="admin-tools">');
+    echo('<h3 class="center">Library Catalog Management Tools</h3>');
+    echo('<ul>');
+    echo('<li><a class="popup-with-form" href="#add-book-form"><h4>Add A Book to the Catalog</h4></a></li>');
+    echo('<li><a class="popup-with-form" href="#pdf-form"><h4>Upload a Book Cover to the Catalog</h4></a></li>');
+    echo('<li><a class="popup-with-form" href="#del-book-form"><h4>Delete a Book By ID</h4></a></li>');
+    echo('</ul>');
+    echo('</div>');
 ?>
 
 <!-- FORM FOR ADDING A BOOK-->

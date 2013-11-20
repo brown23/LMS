@@ -40,6 +40,10 @@ $(document).ready(function () {
                 email: true,
                 maxlength: 125
             }
+        },
+        messages: {
+            reg_password: "Password must be 6-30 characters",
+            reg_repassword: "Passwords must match"
         }
     });
 
@@ -68,6 +72,10 @@ $(document).ready(function () {
                 minlength: 6,
                 maxlength: 30
             }
+        },
+        messages: {
+            pch_password: "Password must be 6-30 characters",
+            pch_repassword: "Passwords must match"
         }
     });
 
@@ -94,6 +102,9 @@ $(document).ready(function () {
                 required: true,
                 maxlength: 13
             }
+        },
+        messages: {
+            adb_isbn: "Enter a valid ISBN-13 w/No Dashes"
         }
     });
 
@@ -103,6 +114,24 @@ $(document).ready(function () {
             del_id: {
                 required: true,
                 number: true
+            },
+            messages: {
+                del_id: "Enter Valid Book ID"
+            }
+        }
+    });
+    // initialize the plugin for add-book-form
+    $('#pdf-form').validate( {
+        rules: {
+            pdf_id: {
+                required: true,
+                number: true
+            },
+            file: {
+                required: true
+            },
+            messages: {
+                pdf_id: "Enter Valid Book ID"
             }
         }
     });
