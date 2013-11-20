@@ -1,12 +1,15 @@
-<html>
-<body>
-
-<form action="PDF_uploader.php" method="post"
-enctype="multipart/form-data">
-<label for="file">Filename:</label>
-<input type="file" name="file" id="file"><br>
-<input type="submit" name="submit" value="Submit">
-</form>
-
-</body>
-</html>
+<!-- PDF/IMAGE UPLOAD FORM -->
+<div class="pdf-form">
+    <form id="pdf-form" class="white-popup-block mfp-hide" action="PDF_uploader.php" method="post" enctype="multipart/form-data">
+        <h2>Upload a Book Cover</h2>
+        <fieldset>
+            <h4>To upload a book cover please enter the Book ID and then a valid file (.pdf, .gif, .jpeg, .jpg, or png)</h4>
+            <h4>(Search the Library Catalog to find the Book ID if it is not known)</h4><br>
+            <p><label for="pdf-id">Book ID:</label>
+                <input type="text" name="pdf-id" id="pdf-id"></p>
+            <p><label for="file">Filename:</label>
+                <input type="file" name="file" id="file"></p>
+            <input id="upload" type="submit" name="upload" value="upload">
+        </fieldset>
+    </form>
+</div>

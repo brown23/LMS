@@ -94,10 +94,12 @@
         <!-- SEARCH BOOKS -->
         <div id="c-tabs3" class="tabdiv">
             <?php
+            // If user is logged in, display library catalog search
             if($_SESSION['status'] == 1)
             {
                 require "books.php";
             }
+            // If not logged in display the login form
             else
             {
                 require "login_form.php";

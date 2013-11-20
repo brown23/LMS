@@ -3,6 +3,7 @@
 
     // Display Add a Book Form
     echo('<a class="popup-with-form" href="#add-book-form"><h4>Add A Book to the Catalog</h4></a>');
+    echo('<a class="popup-with-form" href="#pdf-form"><h4>Upload a Book Cover to the Catalog</h4></a>');
 ?>
 
 <!-- FORM FOR ADDING A BOOK-->
@@ -41,3 +42,8 @@
         </fieldset>
     </form>
 </div>
+
+<!-- FORM FOR UPLOADING A PDF/IMAGE -->
+<?php
+require "PDF_form.html";
+?>
