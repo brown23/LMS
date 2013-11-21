@@ -11,7 +11,10 @@ $(document).ready(function() {
 		if(query_value !== ''){
 			$.ajax({
 				type: "POST",
-				url: "http://severtsonscreens.com/cse360/LMS/book_search.php",
+				// call on server
+				// url: "http://severtsonscreens.com/cse360/LMS/book_search.php",
+				// Localhost
+				url: "/LMS/LMS/book_search.php",  
 				data: { query: query_value, rank: rank },
 				cache: false,
 				success: function(html){
